@@ -17,14 +17,12 @@ import {
   MessageSquare,
   Globe,
   Mail,
-  Phone,
   Lightbulb,
   Target,
   Users,
   Zap,
   ArrowRight,
   CheckCircle,
-  ExternalLink,
 } from "lucide-react";
 
 const Index = () => {
@@ -347,15 +345,15 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="max-w-2xl mx-auto">
               {/* Contact Form */}
               <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Mail className="w-5 h-5 text-primary" />
+                <CardHeader className="text-center">
+                  <CardTitle className="flex items-center justify-center gap-2 text-2xl">
+                    <Mail className="w-6 h-6 text-primary" />
                     Send me a message
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-lg">
                     I'll get back to you within 24 hours
                   </CardDescription>
                 </CardHeader>
@@ -394,7 +392,7 @@ const Index = () => {
                       <label className="text-sm font-medium">Message *</label>
                       <textarea
                         required
-                        rows={4}
+                        rows={5}
                         className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
                         placeholder="Tell me about your project, goals, and how I can help..."
                       />
@@ -411,39 +409,8 @@ const Index = () => {
                 </CardContent>
               </Card>
 
-              {/* Contact Info & WhatsApp */}
-              <div className="space-y-6">
-                <Card className="group hover:border-primary/50 transition-colors">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <Phone className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg">Quick Chat</h3>
-                        <p className="text-muted-foreground">
-                          Prefer instant messaging?
-                        </p>
-                      </div>
-                    </div>
-                    <Button
-                      variant="outline"
-                      className="w-full group-hover:border-primary group-hover:text-primary"
-                      asChild
-                    >
-                      <a
-                        href="https://wa.me/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Phone className="w-4 h-4 mr-2" />
-                        Chat on WhatsApp
-                        <ExternalLink className="ml-2 w-4 h-4" />
-                      </a>
-                    </Button>
-                  </CardContent>
-                </Card>
-
+              {/* Why Work With Me */}
+              <div className="grid md:grid-cols-2 gap-6 mt-12">
                 <Card>
                   <CardContent className="p-6">
                     <h3 className="font-semibold text-lg mb-4">
@@ -555,21 +522,10 @@ const Index = () => {
                   <Mail className="w-4 h-4 mr-2" />
                   Send Message
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-background/70 hover:text-primary hover:bg-background/10 p-0 h-auto justify-start"
-                  asChild
-                >
-                  <a
-                    href="https://wa.me/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Phone className="w-4 h-4 mr-2" />
-                    WhatsApp Chat
-                  </a>
-                </Button>
+                <p className="text-background/60 text-sm">
+                  Professional web development, AI solutions, and business
+                  consulting services
+                </p>
               </div>
             </div>
           </div>
