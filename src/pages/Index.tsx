@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import {
   Code,
   Bot,
@@ -335,130 +336,252 @@ const Index = () => {
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6 bg-accent/30">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Let's Work Together
-            </h2>
-            <p className="text-xl text-muted-foreground mb-12">
-              Ready to bring your ideas to life? Get in touch and let's discuss
-              how I can help your business grow.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <Card className="group hover:border-primary/50 transition-colors">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                    <Mail className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">Email Me</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Drop me a line and I'll get back to you soon
-                  </p>
-                  <Button
-                    variant="outline"
-                    className="group-hover:border-primary group-hover:text-primary"
-                    asChild
-                  >
-                    <a href="mailto:sanjaybhoiya.1@gmail.com">
-                      sanjaybhoiya.1@gmail.com
-                      <ExternalLink className="ml-2 w-4 h-4" />
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="group hover:border-primary/50 transition-colors">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                    <Phone className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">WhatsApp</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Quick chat? Let's connect on WhatsApp
-                  </p>
-                  <Button
-                    variant="outline"
-                    className="group-hover:border-primary group-hover:text-primary"
-                    asChild
-                  >
-                    <a
-                      href="https://wa.me/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Chat on WhatsApp
-                      <ExternalLink className="ml-2 w-4 h-4" />
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                Let's Work Together
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Ready to bring your ideas to life? Send me a message and let's
+                discuss how I can help your business grow.
+              </p>
             </div>
 
-            <div className="text-center">
-              <Button
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg"
-                asChild
-              >
-                <a href="mailto:sanjaybhoiya.1@gmail.com">
-                  Start Your Project Today
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
-              </Button>
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* Contact Form */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Mail className="w-5 h-5 text-primary" />
+                    Send me a message
+                  </CardTitle>
+                  <CardDescription>
+                    I'll get back to you within 24 hours
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">Name *</label>
+                        <input
+                          type="text"
+                          required
+                          className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                          placeholder="Your name"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">Email *</label>
+                        <input
+                          type="email"
+                          required
+                          className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Subject *</label>
+                      <input
+                        type="text"
+                        required
+                        className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="What's your project about?"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Message *</label>
+                      <textarea
+                        required
+                        rows={4}
+                        className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+                        placeholder="Tell me about your project, goals, and how I can help..."
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                    >
+                      Send Message
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+
+              {/* Contact Info & WhatsApp */}
+              <div className="space-y-6">
+                <Card className="group hover:border-primary/50 transition-colors">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <Phone className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-lg">Quick Chat</h3>
+                        <p className="text-muted-foreground">
+                          Prefer instant messaging?
+                        </p>
+                      </div>
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="w-full group-hover:border-primary group-hover:text-primary"
+                      asChild
+                    >
+                      <a
+                        href="https://wa.me/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Phone className="w-4 h-4 mr-2" />
+                        Chat on WhatsApp
+                        <ExternalLink className="ml-2 w-4 h-4" />
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-lg mb-4">
+                      Why work with me?
+                    </h3>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">5+ years of experience</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">
+                          24/7 support and communication
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">
+                          Custom solutions for your needs
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-sm">Results-driven approach</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-gradient-to-br from-primary/5 to-accent/50 border-primary/20">
+                  <CardContent className="p-6 text-center">
+                    <Zap className="w-8 h-8 text-primary mx-auto mb-3" />
+                    <h3 className="font-semibold mb-2">
+                      Ready to get started?
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Let's discuss your project and turn your ideas into
+                      reality
+                    </p>
+                    <Badge className="bg-primary/10 text-primary border-primary/20">
+                      Free consultation
+                    </Badge>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-12 px-6">
+      <footer className="bg-gradient-to-r from-foreground via-foreground/95 to-foreground py-16 px-6">
         <div className="container mx-auto">
-          <div className="text-center space-y-6">
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-12 h-12 bg-primary-foreground/10 rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">
-                  SB
+          <div className="grid md:grid-cols-3 gap-8 items-start">
+            {/* Brand */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                  <span className="text-primary-foreground font-bold text-lg">
+                    SB
+                  </span>
+                </div>
+                <span className="text-xl font-bold text-background">
+                  Sanjay Bhoiya
                 </span>
               </div>
-              <span className="text-2xl font-bold">Sanjay Bhoiya</span>
+              <p className="text-background/70 text-sm leading-relaxed">
+                Transforming ideas into digital success through innovative web
+                solutions, AI automation, and strategic business consulting.
+              </p>
             </div>
 
-            <p className="text-primary-foreground/80 max-w-2xl mx-auto">
-              Web Developer, Digital Marketer & Business Consultant helping
-              businesses grow through innovative digital solutions.
-            </p>
-
-            <div className="flex justify-center gap-6 pt-6">
-              <Button
-                variant="ghost"
-                className="text-primary-foreground hover:bg-primary-foreground/10"
-                asChild
-              >
-                <a href="mailto:sanjaybhoiya.1@gmail.com">
-                  <Mail className="w-5 h-5 mr-2" />
-                  Email
-                </a>
-              </Button>
-              <Button
-                variant="ghost"
-                className="text-primary-foreground hover:bg-primary-foreground/10"
-                asChild
-              >
-                <a
-                  href="https://wa.me/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h4 className="font-semibold text-background">Quick Links</h4>
+              <div className="space-y-2">
+                <button
+                  onClick={() => scrollToSection("about")}
+                  className="block text-background/70 hover:text-primary transition-colors text-sm"
                 >
-                  <Phone className="w-5 h-5 mr-2" />
-                  WhatsApp
-                </a>
-              </Button>
+                  About Me
+                </button>
+                <button
+                  onClick={() => scrollToSection("services")}
+                  className="block text-background/70 hover:text-primary transition-colors text-sm"
+                >
+                  Services
+                </button>
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="block text-background/70 hover:text-primary transition-colors text-sm"
+                >
+                  Contact
+                </button>
+              </div>
             </div>
 
-            <div className="border-t border-primary-foreground/20 pt-6 mt-6">
-              <p className="text-primary-foreground/60">
+            {/* Contact Info */}
+            <div className="space-y-4">
+              <h4 className="font-semibold text-background">Get in Touch</h4>
+              <div className="space-y-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-background/70 hover:text-primary hover:bg-background/10 p-0 h-auto justify-start"
+                  onClick={() => scrollToSection("contact")}
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Send Message
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-background/70 hover:text-primary hover:bg-background/10 p-0 h-auto justify-start"
+                  asChild
+                >
+                  <a
+                    href="https://wa.me/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    WhatsApp Chat
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-background/20 mt-12 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-background/50 text-sm">
                 © {new Date().getFullYear()} Sanjay Bhoiya. All rights
                 reserved.
+              </p>
+              <p className="text-background/50 text-sm">
+                Built with passion for digital excellence
               </p>
             </div>
           </div>
