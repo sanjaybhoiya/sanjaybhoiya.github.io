@@ -8,432 +8,462 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
 import {
-  TrendingUp,
-  TrendingDown,
-  DollarSign,
-  PiggyBank,
-  CreditCard,
-  FileText,
-  Upload,
-  MessageCircle,
-  BarChart3,
-  Target,
-  AlertTriangle,
-  CheckCircle2,
-  Send,
+  Code,
   Bot,
+  TrendingUp,
+  Search,
+  MessageSquare,
+  Globe,
+  Mail,
+  Phone,
+  Lightbulb,
+  Target,
+  Users,
+  Zap,
+  ArrowRight,
+  CheckCircle,
+  ExternalLink,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const Index = () => {
-  const [chatMessage, setChatMessage] = useState("");
+  const [hoveredService, setHoveredService] = useState<number | null>(null);
 
-  const quickStats = [
+  const services = [
     {
-      title: "Total Balance",
-      value: "$12,847.32",
-      change: "+2.4%",
-      trending: "up",
-      icon: DollarSign,
+      icon: Code,
+      title: "Web Development",
+      description:
+        "Responsive websites, e-commerce platforms, and landing pages that convert",
+      features: [
+        "React & Next.js",
+        "E-commerce Solutions",
+        "Mobile-First Design",
+      ],
     },
     {
-      title: "Monthly Spending",
-      value: "$3,241.18",
-      change: "-8.2%",
-      trending: "down",
-      icon: CreditCard,
+      icon: Bot,
+      title: "AI Chatbots & Automation",
+      description:
+        "Intelligent bots and automation systems to streamline your business",
+      features: [
+        "Custom AI Chatbots",
+        "Workflow Automation",
+        "24/7 Customer Support",
+      ],
     },
     {
-      title: "Savings Goal",
-      value: "68%",
-      change: "+5.1%",
-      trending: "up",
-      icon: Target,
+      icon: MessageSquare,
+      title: "Social Media & Content",
+      description: "Strategic content creation and social media optimization",
+      features: [
+        "Content Strategy",
+        "Social Media Management",
+        "Brand Storytelling",
+      ],
     },
     {
-      title: "Investment Growth",
-      value: "$2,104.89",
-      change: "+12.7%",
-      trending: "up",
+      icon: Search,
+      title: "SEO & Growth Strategy",
+      description:
+        "Data-driven SEO and growth strategies to boost your online presence",
+      features: ["Technical SEO", "Keyword Research", "Growth Hacking"],
+    },
+    {
+      icon: Lightbulb,
+      title: "Business Consulting & Ideas",
+      description: "Transform your ideas into profitable business strategies",
+      features: [
+        "Business Planning",
+        "Market Research",
+        "Strategy Development",
+      ],
+    },
+    {
       icon: TrendingUp,
+      title: "Marketing Strategy",
+      description: "Comprehensive marketing campaigns that drive real results",
+      features: [
+        "Digital Campaigns",
+        "Performance Marketing",
+        "ROI Optimization",
+      ],
     },
   ];
 
-  const recentInsights = [
-    {
-      type: "warning",
-      title: "Overspending Alert",
-      description: "You're 23% over budget on dining this month",
-      amount: "$287.42",
-      action: "Review spending",
-    },
-    {
-      type: "success",
-      title: "Savings Opportunity",
-      description: "3 unused subscriptions found",
-      amount: "$47.97/mo",
-      action: "Cancel subscriptions",
-    },
-    {
-      type: "info",
-      title: "Bill Reminder",
-      description: "Credit card payment due in 3 days",
-      amount: "$1,247.18",
-      action: "Set reminder",
-    },
-  ];
-
-  const budgetCategories = [
-    { name: "Housing", spent: 1200, budget: 1500, percentage: 80 },
-    { name: "Food & Dining", spent: 587, budget: 400, percentage: 147 },
-    { name: "Transportation", spent: 234, budget: 300, percentage: 78 },
-    { name: "Entertainment", spent: 156, budget: 200, percentage: 78 },
-    { name: "Utilities", spent: 178, budget: 200, percentage: 89 },
-  ];
-
-  const handleSendMessage = () => {
-    if (chatMessage.trim()) {
-      // Handle chat message
-      setChatMessage("");
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/60">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-10 h-10 bg-primary rounded-xl">
-                <Bot className="w-6 h-6 text-primary-foreground" />
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">
+                  SB
+                </span>
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-foreground">FinBot</h1>
-                <p className="text-sm text-muted-foreground">
-                  Your AI Finance Assistant
-                </p>
-              </div>
+              <span className="font-bold text-xl">Sanjay Bhoiya</span>
             </div>
-            <div className="flex items-center gap-3">
-              <Button variant="outline" size="sm">
-                <Upload className="w-4 h-4 mr-2" />
-                <Link to="/upload">Upload Document</Link>
+            <div className="hidden md:flex items-center gap-6">
+              <button
+                onClick={() => scrollToSection("about")}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                About
+              </button>
+              <button
+                onClick={() => scrollToSection("services")}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Services
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Contact
+              </button>
+            </div>
+            <Button
+              onClick={() => scrollToSection("contact")}
+              className="bg-primary hover:bg-primary/90"
+            >
+              Get in Touch
+            </Button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-6">
+        <div className="container mx-auto text-center">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <Badge
+              variant="outline"
+              className="text-primary border-primary/20 bg-primary/5"
+            >
+              Web Developer • Digital Marketer • Business Consultant
+            </Badge>
+
+            <h1 className="text-5xl md:text-7xl font-bold text-foreground">
+              Bringing Your
+              <span className="text-primary block mt-2">Ideas to Life</span>
+            </h1>
+
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Web Development | AI Solutions | Digital Marketing | Business
+              Consulting
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg group"
+                onClick={() => scrollToSection("contact")}
+              >
+                Get in Touch
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="sm">
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Ask FinBot
+              <Button
+                variant="outline"
+                size="lg"
+                className="px-8 py-6 text-lg"
+                onClick={() => scrollToSection("services")}
+              >
+                View Services
               </Button>
             </div>
           </div>
         </div>
-      </header>
+      </section>
 
-      <div className="container mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-6">
-            {/* Quick Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-              {quickStats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <Card
-                    key={index}
-                    className="hover:shadow-md transition-shadow"
-                  >
-                    <CardContent className="p-6">
-                      <div className="flex items-center justify-between">
-                        <div className="space-y-1">
-                          <p className="text-sm font-medium text-muted-foreground">
-                            {stat.title}
-                          </p>
-                          <p className="text-2xl font-bold">{stat.value}</p>
-                          <div className="flex items-center gap-1">
-                            {stat.trending === "up" ? (
-                              <TrendingUp className="w-4 h-4 text-success-600" />
-                            ) : (
-                              <TrendingDown className="w-4 h-4 text-destructive" />
-                            )}
-                            <span
-                              className={`text-sm font-medium ${
-                                stat.trending === "up"
-                                  ? "text-success-600"
-                                  : "text-destructive"
-                              }`}
-                            >
-                              {stat.change}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="p-3 bg-accent rounded-lg">
-                          <Icon className="w-6 h-6 text-accent-foreground" />
-                        </div>
+      {/* About Section */}
+      <section id="about" className="py-20 px-6 bg-accent/30">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <h2 className="text-4xl md:text-5xl font-bold text-foreground">
+                  About Me
+                </h2>
+                <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    Hi, I'm{" "}
+                    <span className="text-foreground font-semibold">
+                      Sanjay Bhoiya
+                    </span>{" "}
+                    — passionate about transforming your ideas into real
+                    business growth. From building websites to optimizing
+                    content and guiding your business strategy, I provide
+                    personalized solutions tailored to your needs.
+                  </p>
+                  <p>
+                    With expertise spanning web development, AI automation,
+                    digital marketing, and strategic consulting, I help
+                    entrepreneurs and businesses unlock their full potential in
+                    the digital landscape.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Badge className="bg-primary/10 text-primary border-primary/20">
+                    5+ Years Experience
+                  </Badge>
+                  <Badge className="bg-primary/10 text-primary border-primary/20">
+                    100+ Projects
+                  </Badge>
+                  <Badge className="bg-primary/10 text-primary border-primary/20">
+                    Global Clients
+                  </Badge>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-accent/50">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Target className="w-6 h-6 text-primary" />
+                      <h3 className="font-semibold text-lg">My Mission</h3>
+                    </div>
+                    <p className="text-muted-foreground">
+                      To empower businesses with cutting-edge digital solutions
+                      that drive growth, efficiency, and success in today's
+                      competitive market.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <Card>
+                    <CardContent className="p-4 text-center">
+                      <Users className="w-8 h-8 text-primary mx-auto mb-2" />
+                      <div className="font-bold text-2xl">50+</div>
+                      <div className="text-sm text-muted-foreground">
+                        Happy Clients
                       </div>
                     </CardContent>
                   </Card>
-                );
-              })}
+                  <Card>
+                    <CardContent className="p-4 text-center">
+                      <Zap className="w-8 h-8 text-primary mx-auto mb-2" />
+                      <div className="font-bold text-2xl">24/7</div>
+                      <div className="text-sm text-muted-foreground">
+                        Support
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
             </div>
-
-            {/* Budget Overview */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <BarChart3 className="w-5 h-5" />
-                  Budget Overview
-                </CardTitle>
-                <CardDescription>
-                  Track your spending across categories
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {budgetCategories.map((category, index) => (
-                    <div key={index} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">{category.name}</span>
-                        <div className="text-right">
-                          <span className="font-semibold">
-                            ${category.spent}
-                          </span>
-                          <span className="text-muted-foreground">
-                            {" "}
-                            / ${category.budget}
-                          </span>
-                        </div>
-                      </div>
-                      <Progress
-                        value={Math.min(category.percentage, 100)}
-                        className={`h-2 ${category.percentage > 100 ? "[&>div]:bg-destructive" : "[&>div]:bg-primary"}`}
-                      />
-                      <div className="flex items-center justify-between text-sm">
-                        <span
-                          className={
-                            category.percentage > 100
-                              ? "text-destructive"
-                              : "text-muted-foreground"
-                          }
-                        >
-                          {category.percentage}% used
-                        </span>
-                        {category.percentage > 100 && (
-                          <Badge variant="destructive" className="text-xs">
-                            Over budget
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Recent Insights */}
-            <Card>
-              <CardHeader>
-                <CardTitle>AI Insights & Recommendations</CardTitle>
-                <CardDescription>
-                  Personalized financial advice based on your spending patterns
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {recentInsights.map((insight, index) => {
-                    let icon, bgColor, textColor;
-
-                    switch (insight.type) {
-                      case "warning":
-                        icon = AlertTriangle;
-                        bgColor = "bg-warning-50";
-                        textColor = "text-warning-700";
-                        break;
-                      case "success":
-                        icon = CheckCircle2;
-                        bgColor = "bg-success-50";
-                        textColor = "text-success-700";
-                        break;
-                      default:
-                        icon = FileText;
-                        bgColor = "bg-accent";
-                        textColor = "text-accent-foreground";
-                    }
-
-                    const Icon = icon;
-
-                    return (
-                      <div
-                        key={index}
-                        className={`p-4 rounded-lg border ${bgColor}`}
-                      >
-                        <div className="flex items-start gap-3">
-                          <div className={`p-2 rounded-lg ${bgColor}`}>
-                            <Icon className={`w-5 h-5 ${textColor}`} />
-                          </div>
-                          <div className="flex-1 space-y-1">
-                            <div className="flex items-center justify-between">
-                              <h4 className="font-semibold">{insight.title}</h4>
-                              <span className="font-bold text-lg">
-                                {insight.amount}
-                              </span>
-                            </div>
-                            <p className="text-muted-foreground">
-                              {insight.description}
-                            </p>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="mt-2"
-                            >
-                              {insight.action}
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Chat Interface */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Bot className="w-5 h-5" />
-                  Ask FinBot
-                </CardTitle>
-                <CardDescription>Get instant financial advice</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="bg-accent/50 p-3 rounded-lg">
-                    <p className="text-sm">
-                      👋 Hi! I'm FinBot. Ask me anything about your finances,
-                      budgeting, or upload a document for analysis.
-                    </p>
-                  </div>
-                  <div className="flex gap-2">
-                    <Input
-                      placeholder="Ask about your finances..."
-                      value={chatMessage}
-                      onChange={(e) => setChatMessage(e.target.value)}
-                      onKeyPress={(e) =>
-                        e.key === "Enter" && handleSendMessage()
-                      }
-                      className="flex-1"
-                    />
-                    <Button size="icon" onClick={handleSendMessage}>
-                      <Send className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Quick Actions */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Button
-                  variant="outline"
-                  className="w-full justify-start"
-                  asChild
-                >
-                  <Link to="/upload">
-                    <Upload className="w-4 h-4 mr-2" />
-                    Upload Financial Document
-                  </Link>
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <PiggyBank className="w-4 h-4 mr-2" />
-                  Set Savings Goal
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <CreditCard className="w-4 h-4 mr-2" />
-                  Track Expenses
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <BarChart3 className="w-4 h-4 mr-2" />
-                  View Reports
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Financial Health Score */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Financial Health Score</CardTitle>
-                <CardDescription>
-                  Based on your spending and savings patterns
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center space-y-4">
-                  <div className="relative w-32 h-32 mx-auto">
-                    <svg
-                      className="w-32 h-32 transform -rotate-90"
-                      viewBox="0 0 120 120"
-                    >
-                      <circle
-                        cx="60"
-                        cy="60"
-                        r="50"
-                        stroke="currentColor"
-                        strokeWidth="8"
-                        fill="none"
-                        className="text-muted/20"
-                      />
-                      <circle
-                        cx="60"
-                        cy="60"
-                        r="50"
-                        stroke="currentColor"
-                        strokeWidth="8"
-                        fill="none"
-                        strokeDasharray="314"
-                        strokeDashoffset="94"
-                        className="text-primary"
-                      />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold">78</div>
-                        <div className="text-xs text-muted-foreground">
-                          Good
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span>Spending Control</span>
-                      <span className="font-medium">85%</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span>Savings Rate</span>
-                      <span className="font-medium">72%</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span>Budget Adherence</span>
-                      <span className="font-medium">76%</span>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 px-6">
+        <div className="container mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              My Services
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              Comprehensive digital solutions to help your business thrive in
+              the modern landscape
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              const isHovered = hoveredService === index;
+
+              return (
+                <Card
+                  key={index}
+                  className={`group cursor-pointer transition-all duration-300 border hover:border-primary/50 hover:shadow-xl ${
+                    isHovered ? "scale-105" : ""
+                  }`}
+                  onMouseEnter={() => setHoveredService(index)}
+                  onMouseLeave={() => setHoveredService(null)}
+                >
+                  <CardHeader>
+                    <div
+                      className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors ${
+                        isHovered
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-primary/10 text-primary"
+                      }`}
+                    >
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <CardTitle className="text-xl mb-2">
+                      {service.title}
+                    </CardTitle>
+                    <CardDescription className="text-base">
+                      {service.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {service.features.map((feature, featureIndex) => (
+                        <li
+                          key={featureIndex}
+                          className="flex items-center gap-2"
+                        >
+                          <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                          <span className="text-sm text-muted-foreground">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-6 bg-accent/30">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Let's Work Together
+            </h2>
+            <p className="text-xl text-muted-foreground mb-12">
+              Ready to bring your ideas to life? Get in touch and let's discuss
+              how I can help your business grow.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <Card className="group hover:border-primary/50 transition-colors">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                    <Mail className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-lg mb-2">Email Me</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Drop me a line and I'll get back to you soon
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="group-hover:border-primary group-hover:text-primary"
+                    asChild
+                  >
+                    <a href="mailto:sanjaybhoiya.1@gmail.com">
+                      sanjaybhoiya.1@gmail.com
+                      <ExternalLink className="ml-2 w-4 h-4" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:border-primary/50 transition-colors">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                    <Phone className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-lg mb-2">WhatsApp</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Quick chat? Let's connect on WhatsApp
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="group-hover:border-primary group-hover:text-primary"
+                    asChild
+                  >
+                    <a
+                      href="https://wa.me/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Chat on WhatsApp
+                      <ExternalLink className="ml-2 w-4 h-4" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg"
+                asChild
+              >
+                <a href="mailto:sanjaybhoiya.1@gmail.com">
+                  Start Your Project Today
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-primary text-primary-foreground py-12 px-6">
+        <div className="container mx-auto">
+          <div className="text-center space-y-6">
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-12 h-12 bg-primary-foreground/10 rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-xl">
+                  SB
+                </span>
+              </div>
+              <span className="text-2xl font-bold">Sanjay Bhoiya</span>
+            </div>
+
+            <p className="text-primary-foreground/80 max-w-2xl mx-auto">
+              Web Developer, Digital Marketer & Business Consultant helping
+              businesses grow through innovative digital solutions.
+            </p>
+
+            <div className="flex justify-center gap-6 pt-6">
+              <Button
+                variant="ghost"
+                className="text-primary-foreground hover:bg-primary-foreground/10"
+                asChild
+              >
+                <a href="mailto:sanjaybhoiya.1@gmail.com">
+                  <Mail className="w-5 h-5 mr-2" />
+                  Email
+                </a>
+              </Button>
+              <Button
+                variant="ghost"
+                className="text-primary-foreground hover:bg-primary-foreground/10"
+                asChild
+              >
+                <a
+                  href="https://wa.me/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  WhatsApp
+                </a>
+              </Button>
+            </div>
+
+            <div className="border-t border-primary-foreground/20 pt-6 mt-6">
+              <p className="text-primary-foreground/60">
+                © {new Date().getFullYear()} Sanjay Bhoiya. All rights
+                reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
